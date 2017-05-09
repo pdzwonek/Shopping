@@ -1,0 +1,52 @@
+.mini-photo {
+    width: 100px;
+    height: 100px;
+}
+
+.price {
+    color: gray;
+}
+
+.name {
+    font-size: 900;
+}
+
+.available {
+    color: green;
+    margin-left: 5px;
+}
+
+.unavailable {
+    color: red;
+}
+
+@media (min-width: 320px) {
+    .price {
+        margin-left: 5px;
+    }
+}
+
+@media (min-width: 961px) {
+    .name {
+        font-size: 24px;
+    }
+
+    .show-product-button {
+        float: right;
+        margin: -3% 0 0 0;
+    }
+
+    .price {
+        margin-left: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .name {
+        font-size: 24px;
+    }
+
+    .price {
+        margin-left: 10px;
+    }
+}
