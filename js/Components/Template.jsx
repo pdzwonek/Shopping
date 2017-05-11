@@ -1,7 +1,19 @@
 import React from 'react'
+import config from '../config.js'
 import {Link, IndexLink} from 'react-router'
 
 class Template extends React.Component {
+
+    componentDidMount(){
+        if (!localStorage.getItem("cart")) { //localStorage zmienna lokalna obsługujaca pamiec przegladarki
+            fetch(config.apiUrl + "/createCart")
+                .then(response => response.json())
+                .then(responseJson => {
+                    localStorage.setItem("cart", responseJson.id)
+                })
+        }
+    }
+
     render() {
         return <div>
             <nav className="navbar navbar-default">
@@ -22,7 +34,7 @@ class Template extends React.Component {
                             <li><Link to='/contact'>Contact</Link></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><Link to='/cart'>
+                            <li><Link to={'/cart/' + localStorage.getItem("cart")}>
                                 <i className='glyphicon glyphicon-shopping-cart'></i>
                             </Link></li>
                         </ul>
@@ -34,7 +46,7 @@ class Template extends React.Component {
             </div>
             <footer className="navbar navbar-default navbar-fixed-bottom">
                 <div className="container-fluid">
-                    Copyright &copy; 2017. Created by WRO_FRO_S_05
+                    <div className="footer-info">Copyright &copy; 2017. Created by WRO_FRO_S_05</div>
                 </div>
             </footer>
         </div>

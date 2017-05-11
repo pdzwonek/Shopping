@@ -1,0 +1,29 @@
+.quantity {
+    color: gray;
+}
+
+.productSum {
+    font-weight: 700;
+}
+
+.totalPrice {
+    font-size: 24px;
+}
+
+.quantity {
+    margin-left: 5px;
+}
+
+
+@media (min-width: 961px) {
+    .productSum {
+        float: right;
+    }
+    .totalPrice {
+        float: right;
+    }
+    .delete-btn {
+        margin-top: 50px;
+    }
+
+}
