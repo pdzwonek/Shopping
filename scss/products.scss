@@ -24,6 +24,10 @@
     margin-top: 15px;
 }
 
+textarea {
+    resize: none;
+}
+
 @media (min-width: 320px) {
     .price {
         margin-left: 5px;

@@ -6,7 +6,8 @@ class Products extends React.Component{
     constructor(){
         super()
         this.state = {
-            products: []
+            products: [],
+            toFind: ""
         }
     }
 
@@ -24,13 +25,42 @@ class Products extends React.Component{
             })
     }
 
+    handleToFindChange = event => {
+        this.setState({
+            toFind: event.target.value
+        })
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault()
+        this.search = true
+        fetch(config.apiUrl + '/product/find/' + this.state.toFind)
+            .then(response => response.json())
+            .then(responseJson => {
+                console.log(responseJson);
+                this.setState({
+                    products: responseJson.products
+                }, () => {
+                    this.search = false;
+                })
+            })
+    }
+
     render(){
         return <div className="row">
             <div className="col-md-12 col-sm-12">
+            <form onSubmit={this.handleFormSubmit}>
+                    <div className="input-group">
+                        <input type="text" className="form-control" onChange={this.handleToFindChange} placeholder="Search for..." />
+                        <span className="input-group-btn">
+                            <button className="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
                 <table className="table table-bordered table-hovered">
                     <tbody>
                     {
-                        this.state.products.map(element => {
+                        this.search ? null : this.state.products.map(element => {
                             return <TableRows
                                 key={element.id}
                                 id={element.id}

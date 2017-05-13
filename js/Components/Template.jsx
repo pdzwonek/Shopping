@@ -5,6 +5,7 @@ import {Link, IndexLink} from 'react-router'
 class Template extends React.Component {
 
     componentDidMount(){
+        localStorage.removeItem("cart")
         if (!localStorage.getItem("cart")) { //localStorage zmienna lokalna obsługujaca pamiec przegladarki
             fetch(config.apiUrl + "/createCart")
                 .then(response => response.json())
